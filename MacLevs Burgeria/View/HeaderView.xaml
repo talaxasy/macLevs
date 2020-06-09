@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="MacLevs_Burgeria.View.HeaderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MacLevs_Burgeria.View"
+             mc:Ignorable="d" 
+             d:DesignWidth="550">
+    <Grid>
+        <Border BorderBrush="#e1e2e6" BorderThickness="0 0 0 2" Background="Transparent">
+            <Grid x:Name="header" Margin="30, 20, 30, 20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="3.1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Image Grid.Column="0" Source="../burger.png" Height="40" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left"
+                           VerticalAlignment="Center" Style="{StaticResource GotBold}" 
+                           FontSize="40" Margin="20, 0, 0, 0" FontFamily="/MacLevs Burgeria;component/fonts/#Gotham Pro Black" Foreground="#FF333333"><Run Text="MacLev"/><Run FontSize="32" Text="'s" /></TextBlock>
+                </Grid>
+                <Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Grid.Column="0" Cursor="Hand" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{DynamicResource sortDotsBtn}">
+                    <TextBlock Text="" FontSize="34" Foreground="#7F313135" FontFamily="/MacLevs Burgeria;component/fonts/#Font Awesome 5 Free Solid"/>
+                </Button>
+                <Button Grid.Column="2" Cursor="Hand" HorizontalAlignment="Right" VerticalAlignment="Center"  Style="{DynamicResource sortDotsBtn}">
+                    <TextBlock Text="" Foreground="#7F313135" FontSize="34" FontFamily="/MacLevs Burgeria;component/fonts/#Font Awesome 5 Free Solid"/>
+                </Button>
+            </Grid>
+        </Border>
+        
+    </Grid>
+</UserControl>

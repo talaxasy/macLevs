@@ -1,0 +1,122 @@
+﻿<Application x:Class="MacLevs_Burgeria.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MacLevs_Burgeria"
+             
+             StartupUri="MainWindow.xaml">
+    <!--StartupUri="loadingWindow.xaml"-->
+    <Application.Resources>
+        <ResourceDictionary>
+            
+            
+            
+            <Style x:Key="GotBlack">
+                <Setter Property="TextElement.FontFamily" Value="pack://application:,,,/fonts/#GothaProBla" />
+            </Style>
+            <Style x:Key="GotMedium">
+                <Setter Property="TextElement.FontFamily" Value="/MacLevs Burgeria;component/fonts/#Gotham Pro Medium" />
+            </Style>
+            <Style x:Key="GotBold">
+                <Setter Property="TextElement.FontFamily" Value="/MacLevs Burgeria;component/fonts/#Gotham Pro" />
+            </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="#333333" />
+                <Setter Property="TextElement.FontFamily" Value="pack://application:,,,/fonts/#GothaProMed" />
+            </Style>
+
+            <Style x:Key="menuFont" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="#333333" />
+                <Setter Property="FontFamily" Value="/MacLevs Burgeria;component/fonts/#Gotham Pro Medium" />
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Style.Triggers>
+                    <Trigger Property="Control.IsMouseOver" Value="True">
+                        <Setter Property="Control.Foreground" Value="#000" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="FocusVisual">
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="panelSortStyle" TargetType="{x:Type Button}">
+                <Setter Property="FontFamily" Value="/MacLevs Burgeria;component/fonts/#Gotham Pro Medium" />
+                <Setter Property="Background" Value="#F3F5F9"/>
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="BorderThickness" Value="0 0 0 2"/>
+                <Setter Property="BorderBrush" Value="#e1e2e6"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="25 0 0 0"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                                <ContentPresenter  x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Background" TargetName="border" Value="#e0e3e8"/>
+                                    <Setter Property="BorderBrush" TargetName="border" Value="#e0e3e8"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="true">
+                                    <Setter Property="Background" TargetName="border" Value="#e0e3e8"/>
+                                    <Setter Property="BorderBrush" TargetName="border" Value="#e0e3e8"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="sortDotsBtn" TargetType="{x:Type Button}">
+                <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+                <Setter Property="Background" Value="transparent"/>
+                <Setter Property="BorderBrush" Value="transparent"/>
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="1"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsDefaulted" Value="true">
+                                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Background" TargetName="border" Value="transparent"/>
+                                    <Setter Property="BorderBrush" TargetName="border" Value="transparent"/>
+                                    <Setter Property="Control.Foreground" TargetName="contentPresenter" Value="#333333"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="true">
+                                    <Setter Property="Background" TargetName="border" Value="transparent"/>
+                                    <Setter Property="BorderBrush" TargetName="border" Value="transparent"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            
+            
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

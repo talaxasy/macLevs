@@ -1,0 +1,106 @@
+﻿<Window x:Class="MacLevs_Burgeria.View.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MacLevs_Burgeria.View"
+        xmlns:viewmodels="clr-namespace:MacLevs_Burgeria.ViewModel"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        mc:Ignorable="d"
+        Title="Admin panel"
+        Height="600" Width="450" MinWidth="450" MinHeight="600" MaxWidth="450" MaxHeight="600"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Icon="../burger.png"
+        WindowStartupLocation="CenterScreen" WindowStyle="None">
+    
+    <Window.Template>
+        <ControlTemplate TargetType="Window">
+            <Border
+        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+        BorderThickness="0.8"
+        BorderBrush="#999999"
+        CornerRadius="7" Margin="20">
+                <Border.Effect>
+                    <DropShadowEffect RenderingBias="Quality" ShadowDepth="3" Direction="-70" BlurRadius="15" Opacity="0.5"/>
+                </Border.Effect>
+                <Grid>
+                    <Border
+                Name="mask" Background="#FFF3F5F9"
+                CornerRadius="7" SnapsToDevicePixels="True" />
+                    <DockPanel SnapsToDevicePixels="True">
+                        <DockPanel.OpacityMask>
+                            <VisualBrush Visual="{Binding ElementName=mask}"/>
+                        </DockPanel.OpacityMask>
+                        <Border BorderThickness="0 0 0 0.7" BorderBrush="#999999" DockPanel.Dock="Top">
+                            <Grid x:Name="flee" Height="25"  SnapsToDevicePixels="True" MouseDown="flee_MouseDown">
+                                <Grid.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFE5E5E4" Offset="0"/>
+                                        <GradientStop Color="#FFCDCDCE" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Grid.Background>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{TemplateBinding Title}" Grid.Column="1" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF828282" FontFamily="/MacLevs Burgeria;component/fonts/#Gotham Pro Medium"/>
+                                <TextBlock Text="❌" Margin="0 0 10 0" Foreground="#333333" FontWeight="Light" Cursor="Hand" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="2" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"></TextBlock>
+                            </Grid>
+                        </Border>
+                        <ContentPresenter DockPanel.Dock="Top" />
+                    </DockPanel>
+                </Grid>
+            </Border>
+
+        </ControlTemplate>
+    </Window.Template>
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.8*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="0.1*" />
+            </Grid.RowDefinitions>
+
+            <ListBox Grid.Column="0" ItemsSource="{Binding Burgers}" Height="500"
+                 SelectedItem="{Binding SelectedBurger}" Background="#13000000" Margin="0,0,20,0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="5">
+                            <TextBlock FontSize="18" Text="{Binding Path=Title}" />
+                            <TextBlock Text="{Binding Path=Description}" />
+                            <TextBlock Text="{Binding Path=Price}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" >
+                <Button Margin="20 0 0 0" Command="{Binding AddProductCommand}" FontSize="20" Background="#FF75D37A" Foreground="#DDFFFFFF" FontFamily="/MacLevs Burgeria;component/fonts/#Gotham Pro Black" BorderBrush="#00673AB7">+</Button>
+                <Button Command="{Binding RemoveProductCommand}" CommandParameter="{Binding SelectedBurger}" Background="#FFE87373" BorderBrush="Transparent" FontSize="20" FontFamily="/MacLevs Burgeria;component/fonts/#Gotham Pro">-</Button>
+                <Button Content="Duplicate" Command="{Binding DoubleProductCommand}" CommandParameter="{Binding SelectedBurger}" Foreground="#DDFFFFFF" BorderBrush="#00673AB7" Background="#FF9977D4"></Button>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <StackPanel DataContext="{Binding SelectedBurger}" Margin="0,0,20,0">
+                    <TextBlock Text="Выбранный элемент" FontSize="16" FontWeight="Bold" Margin="0,20"  />
+                    <TextBlock Text="Бургер" />
+                    <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" />
+                    <TextBlock Text="Описание" />
+                    <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" />
+                    <TextBlock Text="Цена" />
+                    <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" />
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Button Margin="0,0,20,10" Content="Сохранить в БД" Command="{Binding EditProductCommand}" CommandParameter="{Binding SelectedBurger}" Foreground="#fff" Background="#FF3BA938" FontFamily="/MacLevs Burgeria;component/fonts/#Gotham Pro Black" BorderBrush="#FF4AB73A"/>
+                    <Button Margin="0,0,20,0" Content="Удалить все данные" Command="{Binding RemoveAllProductCommand}" Foreground="#fff" Background="#FFD92C2C" FontFamily="/MacLevs Burgeria;component/fonts/#Gotham Pro Black" BorderBrush="#FFD03131" FontSize="13"/>
+                </StackPanel>
+            </StackPanel>
+            
+            
+        </Grid>
+    </Grid>
+</Window>
